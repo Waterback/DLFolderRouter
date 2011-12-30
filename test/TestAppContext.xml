@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:cxf-core="http://cxf.apache.org/core"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://camel.apache.org/schema/spring         http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://www.springframework.org/schema/jee     http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+       http://www.springframework.org/schema/util    http://www.springframework.org/schema/util/spring-util-3.0.xsd
+       http://cxf.apache.org/jaxrs                   http://cxf.apache.org/schemas/jaxrs.xsd
+       http://cxf.apache.org/core  					 http://cxf.apache.org/schemas/core.xsd">
+
+    <bean id="properties"
+		class="org.apache.camel.component.properties.PropertiesComponent">
+        <property name="location"
+			value="test.properties" />
+    </bean>
+
+    <bean id="traceFormatter"
+		class="org.apache.camel.processor.interceptor.DefaultTraceFormatter">
+        <property name="showBody" value="false" />
+        <property name="showBodyType" value="false" />
+        <property name="showBreadCrumb" value="false" />
+        <property name="maxChars" value="300" />
+    </bean>  
+
+    <bean id="filetypeAnalyzer" class="org.wb.downloadfolder.beans.FileTypeAnalyzer" >
+        <property name="fileTypes" ref="filetypes"/>
+    </bean>
+
+    <bean id="downloadfolderroute" class="org.wb.downloadfolder.route.DownloadFolderRoute" />
+
+    <camel:camelContext id="dlfx" trace="true">
+        <camel:routeBuilder ref="downloadfolderroute" />
+    </camel:camelContext>
+
+    <util:map id="filetypes">
+        <entry key="pdf" value="docu" />
+        <entry key="key" value="presentation" />
+        <entry key="ppt" value="presentation" />
+        <entry key="pptx" value="presentation" /> 
+        <entry key="pls" value="music" />
+        <entry key="m3u" value="music" />
+        <entry key="app" value="application" />
+        <entry key="dmg" value="application" />
+        <entry key="zip" value="sw" />
+        <entry key="tgz" value="sw" />
+        <entry key="tar" value="sw" />
+        <entry key="gz" value="sw" />
+        <entry key="flv" value="movies" />
+        <entry key="mp4" value="movies" />
+        <entry key="avi" value="movies" />
+        <entry key="mov" value="movies" />
+    </util:map>        
+    
+</beans>
