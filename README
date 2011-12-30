@@ -1,0 +1,5 @@
+DownloadFolder is a short little experiment with Camel to empty my Downloads Folder and send 
+the files in predefined directions.
+Directions can be defined in a properties file.
+Because it is an experiment i also wanted to work/learn a new IDE/Server: Netbeans and Glassfish.
+So don't wonder about the Project being a webproject.
