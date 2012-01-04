@@ -23,7 +23,7 @@ public class DownloadFolderRoute extends SpringRouteBuilder{
         FileTypeAnalyzer fta = lookup("filetypeAnalyzer", FileTypeAnalyzer.class);
         
         from("file://{{org.wb.dlf.dl}}?delete=true&readLock=rename&delay=500")
-                .threads(1)
+//                .autoStartup(false)
                 .process(fta)
                 .choice()
                     .when(header("SubDirectionHint").isEqualTo("sw"))

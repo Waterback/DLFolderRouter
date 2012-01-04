@@ -9,17 +9,15 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://camel.apache.org/schema/spring         http://camel.apache.org/schema/spring/camel-spring.xsd
        http://www.springframework.org/schema/jee     http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
-       http://www.springframework.org/schema/util    http://www.springframework.org/schema/util/spring-util-3.0.xsd
-       http://cxf.apache.org/jaxrs                   http://cxf.apache.org/schemas/jaxrs.xsd
-       http://cxf.apache.org/core  					 http://cxf.apache.org/schemas/core.xsd">
+       http://www.springframework.org/schema/util    http://www.springframework.org/schema/util/spring-util-3.0.xsd" >
 
-    <bean id="properties"
+    <bean id="properties" 
 		class="org.apache.camel.component.properties.PropertiesComponent">
         <property name="location"
-			value="classpath:/META-INF/DLF.properties" />
+			value="classpath:/org/wb/downloadfolder/properties/DLF.properties"/>
     </bean>
 
-    <bean id="filetypeAnalyzer" class="org.wb.downloadfolder.beans.FileTypeAnalyzer" >
+    <bean id="filetypeAnalyzer" class="org.wb.downloadfolder.beans.FileTypeAnalyzer" > 
         <property name="fileTypes" ref="filetypes"/>
     </bean>
 
